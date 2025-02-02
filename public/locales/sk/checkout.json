@@ -1,0 +1,160 @@
+{
+    "seoTitles": {
+      "checkout": "Pokladňa",
+      "payment": "Platba",
+      "confirmation": "Potvrdenie"
+    },
+    "steps": {
+      "shipping": "Preprava",
+      "payment": "Platba",
+      "confirmation": "Potvrdenie"
+    },
+    "orderForm": {
+      "emptyCart": "Váš košík je prázdny",
+      "emptyCartDescription": "V nákupnom košíku nemáte žiadne položky. Kliknutím na <1>tu</1> môžete pokračovať v nakupovaní.",
+      "whatAccountGives": "Konto vám umožňuje prístup k histórii a stavu vašich objednávok. Umožňuje vám tiež vykonávať zmeny vašich osobných údajov a adries.",
+      "createAccount": "Vytvoriť si účet?",
+      "password": "Heslo",
+      "confirmPassword": "Potvrdiť heslo",
+      "shippingDifferentThanBilling": "Líši sa dodacia adresa od fakturačnej?",
+      "userNeedInvoice": "Potrebujete faktúru?",
+      "orderSummary": "Súhrn objednávky",
+      "contactInfo": "Kontaktné informácie",
+      "emailAddress": "E-mailová adresa",
+      "firstName": "Kresťanské meno",
+      "lastName": "Priezvisko",
+      "phone": "Telefón",
+      "shippingInfo": "Informácie o preprave",
+      "billingInfo": "Fakturačné údaje",
+      "NIP": "NIP",
+      "fullName": "Celé meno",
+      "company": "Spoločnosť",
+      "individual": "Individuálne",
+      "streetLine1": "Adresa",
+      "streetLine2": "Byt, apartmán atď.",
+      "city": "Mesto",
+      "countryCode": "Krajina",
+      "province": "Štát / provincia",
+      "postalCode": "Poštové smerovacie číslo",
+      "continueToPayment": "Pokračovať na platbu",
+      "continueShopping": "Pokračovať v nakupovaní",
+      "regulations": "Súhlasím s <1>pravidlami</1>.",
+      "terms": "Súhlasím s <1>podmienkami</1>.",
+      "placeholders": {
+        "emailAddress": "E-mailová adresa",
+        "firstName": "Kresťanské meno",
+        "lastName": "Priezvisko",
+        "phoneNumber": "Telefónne číslo",
+        "phone": "Telefón",
+        "fullName": "Celé meno",
+        "company": "Spoločnosť",
+        "streetLine1": "Adresa",
+        "streetLine2": "Byt, apartmán atď.",
+        "city": "Mesto",
+        "countryCode": "Krajina",
+        "province": "Štát / provincia",
+        "postalCode": "Poštové smerovacie číslo",
+        "NIP": "NIP",
+        "password": "Heslo",
+        "confirmPassword": "Potvrdiť heslo"
+      },
+      "errors": {
+        "root": {
+          "invalid": "Pri odosielaní formulára došlo k chybe. Prosím, opravte nižšie uvedené chyby",
+          "closeButton": "Zatvoriť"
+        },
+        "emailAddress": {
+          "required": "Vyžaduje sa e-mailová adresa",
+          "email": "E-mailová adresa je neplatná"
+        },
+        "firstName": {
+          "required": "Vyžaduje sa krstné meno"
+        },
+        "lastName": {
+          "required": "Vyžaduje sa priezvisko"
+        },
+        "phone": {
+          "required": "Vyžaduje sa telefón"
+        },
+        "fullName": {
+          "required": "Vyžaduje sa celé meno"
+        },
+        "company": {
+          "required": "Vyžaduje sa spoločnosť"
+        },
+        "streetLine1": {
+          "required": "Vyžaduje sa adresa"
+        },
+        "streetLine2": {
+          "required": "Vyžaduje sa byt, apartmán atď"
+        },
+        "city": {
+          "required": "Vyžaduje sa mesto"
+        },
+        "countryCode": {
+          "required": "Vyžaduje sa krajina"
+        },
+        "province": {
+          "required": "Vyžaduje sa štát / provincia"
+        },
+        "postalCode": {
+          "required": "Vyžaduje sa poštové smerovacie číslo"
+        },
+        "terms": {
+          "required": "Vyžadujú sa podmienky"
+        },
+        "regulations": {
+          "required": "Vyžadujú sa predpisy"
+        },
+        "NIP": {
+          "required": "Vyžaduje sa NIP"
+        },
+        "password": {
+          "required": "Vyžaduje sa heslo"
+        },
+        "confirmPassword": {
+          "required": "Vyžaduje sa potvrdenie hesla",
+          "notMatch": "Heslá sa nezhodujú"
+        }
+      }
+    },
+    "orderSummary": {
+      "title": "Súhrn objednávky",
+      "subtotal": "Medzisúčet",
+      "discount": "Zľava",
+      "shipping": "Preprava",
+      "total": "Celkom",
+      "quantity": "Množstvo",
+      "remove": "Odstrániť",
+      "customerAlsoBought": {
+        "title": "Klienti tiež kúpili",
+        "addToOrder": "Pridať do objednávky"
+      }
+    },
+    "deliveryMethod": {
+      "title": "Spôsob doručenia",
+      "required": "*(Vyžaduje sa jeden zo spôsobov doručenia)",
+      "errors": {
+        "required": "Vyžaduje sa spôsob doručenia"
+      }
+    },
+    "paymentMethod": {
+      "title": "Toto je fiktívna platba len na demonštračné účely",
+      "submit": "Odoslať platbu",
+      "notAvailable": "Predvolený spôsob platby nie je k dispozícii",
+      "success": "Vrátiť úspech",
+      "error": "Vrátiť chybu",
+      "selectToContinue": "Vyberte spôsob platby a pokračujte",
+      "decline": "Vrátenie zamietnuté",
+      "dummyMethods": {
+        "success": "Úspešná fiktívna platba",
+        "error": "Chyba fiktívnej platby",
+        "decline": "Odmietnutie fiktívnej platby"
+      }
+    },
+    "confirmation": {
+      "orderReceived": "Vaša objednávka <1>{{code}}</1> bola prijatá",
+      "orderCancelled": "Vaša objednávka <1>{{code}}</1> bola zrušená",
+      "orderNotFound": "Objednávka nebola nájdená"
+    }
+  }

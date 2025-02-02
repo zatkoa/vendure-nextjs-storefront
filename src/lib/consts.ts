@@ -15,17 +15,17 @@
 // ];
 
 export const DEFAULT_CHANNEL = 'default-channel';
-export const DEFAULT_CHANNEL_SLUG = 'en';
+export const DEFAULT_CHANNEL_SLUG = 'sk';
 
-export const DEFAULT_LOCALE = 'en';
-export const DEFAULT_NATIONAL_LOCALE = 'en';
+export const DEFAULT_LOCALE = 'sk';
+export const DEFAULT_NATIONAL_LOCALE = 'sk';
 
 export const channels = [
     {
         slug: DEFAULT_CHANNEL_SLUG,
         channel: DEFAULT_CHANNEL,
         nationalLocale: DEFAULT_NATIONAL_LOCALE,
-        locales: ['en', 'pl', 'fr', 'de', 'ja', 'es'],
+        locales: [],
     },
     // {
     //     slug: 'pl',

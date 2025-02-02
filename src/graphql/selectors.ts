@@ -182,6 +182,7 @@ export const ProductDetailSelector = Selector('Product')({
         priceWithTax: true,
         stockLevel: true,
         sku: true,
+        // customFields: {},
         options: {
             id: true,
             groupId: true,
@@ -228,6 +229,23 @@ export const ProductVariantSelector = Selector('ProductVariant')({
         source: true,
         preview: true,
     },
+});
+
+export const EssentialOilPrice = Selector('EssentialOilPrice')({
+    channelId: true,
+    price: true,
+    currencyCode: true,
+});
+
+export const EssentialOilSelector = Selector('EssentialOil')({
+    id: true,
+    name: true,
+    price: EssentialOilPrice,
+});
+
+export const EssentialOilsSelector = Selector('EssentialOilList')({
+    items: EssentialOilSelector,
+    totalItems: true,
 });
 
 export const AvailableCountriesSelector = Selector('Country')({

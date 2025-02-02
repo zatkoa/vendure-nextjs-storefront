@@ -26,14 +26,25 @@ const useCartContainer = createContainer(() => {
         }
     };
 
-    const addToCart = async (id: string, q: number, o?: boolean) => {
+    const addToCart = async (
+        id: string,
+        q: number,
+        o?: boolean,
+        essentialOils?: { essentialOilId: string; amount: number }[],
+    ) => {
         setActiveOrder(c => {
             return c && { ...c, totalQuantity: c.totalQuantity + 1 };
         });
         try {
             const { addItemToOrder } = await storefrontApiMutation(ctx)({
                 addItemToOrder: [
-                    { productVariantId: id, quantity: q },
+                    {
+                        productVariantId: id,
+                        quantity: q,
+                        customFields: {
+                            essentialOils,
+                        },
+                    },
                     {
                         __typename: true,
                         '...on Order': ActiveOrderSelector,

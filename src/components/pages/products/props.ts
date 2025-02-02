@@ -1,5 +1,5 @@
 import { SSGQuery } from '@/src/graphql/client';
-import { ProductDetailSelector, homePageSlidersSelector } from '@/src/graphql/selectors';
+import { EssentialOilsSelector, ProductDetailSelector, homePageSlidersSelector } from '@/src/graphql/selectors';
 import { getCollections } from '@/src/graphql/sharedQueries';
 import { ContextModel, makeStaticProps } from '@/src/lib/getStatic';
 import { arrayToTree } from '@/src/util/arrayToTree';
@@ -27,6 +27,10 @@ export const getStaticProps = async (context: ContextModel<{ slug?: string }>) =
     });
     const clientsAlsoBought = await api({
         collection: [{ slug: 'search' }, homePageSlidersSelector],
+    });
+
+    const essentialOils = await api({
+        essentialOils: EssentialOilsSelector,
     });
 
     const { optionGroups: _optionGroups, ...product } = response.product;
@@ -67,6 +71,7 @@ export const getStaticProps = async (context: ContextModel<{ slug?: string }>) =
         clientsAlsoBought,
         navigation,
         language,
+        essentialOils: essentialOils.essentialOils
     };
 
     return {

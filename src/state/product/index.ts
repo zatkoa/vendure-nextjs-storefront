@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { ProductDetailType } from '@/src/graphql/selectors';
 import { usePush } from '@/src/lib/redirect';
 import { useCart } from '@/src/state/cart';
-import { OptionGroupWithStock, ProductContainerType, Variant } from './types';
+import { EssentialOil, OptionGroupWithStock, ProductContainerType, Variant } from './types';
 import { findRelatedVariant, productEmptyState, setRecentlyViewedInCookie } from './utils';
 
 const useProductContainer = createContainer<ProductContainerType, { product: ProductDetailType }>(initialState => {
@@ -16,6 +16,7 @@ const useProductContainer = createContainer<ProductContainerType, { product: Pro
     const [selectedOptions, setSelectedOptions] = useState<{
         [key: string]: string;
     }>({});
+    const [selectedEssentialOils, setSelectedEssentialOils] = useState<EssentialOil[]>([]);
     const [variant, setVariant] = useState<Variant | undefined>(initialState.product?.variants[0]);
     const [addingError, setAddingError] = useState<string | undefined>();
     const { asPath } = useRouter();
@@ -83,13 +84,13 @@ const useProductContainer = createContainer<ProductContainerType, { product: Pro
     };
 
     const handleAddToCart = async () => {
-        if (variant?.id) await addToCart(variant.id, 1, true);
+        if (variant?.id) await addToCart(variant.id, 1, true, selectedEssentialOils);
         else setAddingError(t('select-options'));
     };
 
     const handleBuyNow = async () => {
         if (variant?.id) {
-            await addToCart(variant.id, 1);
+            await addToCart(variant.id, 1, false, selectedEssentialOils);
             push('/checkout');
         } else setAddingError(t('select-options'));
     };
@@ -107,6 +108,16 @@ const useProductContainer = createContainer<ProductContainerType, { product: Pro
         );
         if (newVariant && newVariant !== variant) handleVariant(newVariant);
         else handleVariant(undefined);
+    };
+
+    const handleEssentialOilClick = (oils: EssentialOil[]) => {
+        // let newState: { [key: string]: string };
+        // if (selectedOptions[essentialOilId] === id) {
+        //     return;
+        // } else {
+        //     newState = { ...selectedOptions, [groupId]: id };
+        // }
+        setSelectedEssentialOils(oils);
     };
 
     const productOptionsGroups = useMemo(() => {
@@ -139,6 +150,7 @@ const useProductContainer = createContainer<ProductContainerType, { product: Pro
         handleAddToCart,
         handleBuyNow,
         handleOptionClick,
+        handleEssentialOilClick,
         productOptionsGroups,
     };
 });

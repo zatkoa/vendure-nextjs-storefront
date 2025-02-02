@@ -32,13 +32,13 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	Mutation:{
 		addItemToOrder:{
-
+			customFields:"OrderLineCustomFieldsInput"
 		},
 		removeOrderLine:{
 
 		},
 		adjustOrderLine:{
-
+			customFields:"OrderLineCustomFieldsInput"
 		},
 		applyCouponCode:{
 
@@ -288,7 +288,9 @@ export const AllTypesProps: Record<string,any> = {
 		price:"NumberOperators",
 		currencyCode:"StringOperators",
 		priceWithTax:"NumberOperators",
-		stockLevel:"StringOperators"
+		stockLevel:"StringOperators",
+		_and:"ProductVariantFilterParameter",
+		_or:"ProductVariantFilterParameter"
 	},
 	ProductVariantSortParameter:{
 		id:"SortOrder",
@@ -309,7 +311,9 @@ export const AllTypesProps: Record<string,any> = {
 		firstName:"StringOperators",
 		lastName:"StringOperators",
 		phoneNumber:"StringOperators",
-		emailAddress:"StringOperators"
+		emailAddress:"StringOperators",
+		_and:"CustomerFilterParameter",
+		_or:"CustomerFilterParameter"
 	},
 	CustomerSortParameter:{
 		id:"SortOrder",
@@ -337,7 +341,9 @@ export const AllTypesProps: Record<string,any> = {
 		shipping:"NumberOperators",
 		shippingWithTax:"NumberOperators",
 		total:"NumberOperators",
-		totalWithTax:"NumberOperators"
+		totalWithTax:"NumberOperators",
+		_and:"OrderFilterParameter",
+		_or:"OrderFilterParameter"
 	},
 	OrderSortParameter:{
 		id:"SortOrder",
@@ -361,7 +367,9 @@ export const AllTypesProps: Record<string,any> = {
 		languageCode:"StringOperators",
 		facetId:"IDOperators",
 		name:"StringOperators",
-		code:"StringOperators"
+		code:"StringOperators",
+		_and:"FacetValueFilterParameter",
+		_or:"FacetValueFilterParameter"
 	},
 	FacetValueSortParameter:{
 		id:"SortOrder",
@@ -375,7 +383,9 @@ export const AllTypesProps: Record<string,any> = {
 		id:"IDOperators",
 		createdAt:"DateOperators",
 		updatedAt:"DateOperators",
-		type:"StringOperators"
+		type:"StringOperators",
+		_and:"HistoryEntryFilterParameter",
+		_or:"HistoryEntryFilterParameter"
 	},
 	HistoryEntrySortParameter:{
 		id:"SortOrder",
@@ -391,7 +401,9 @@ export const AllTypesProps: Record<string,any> = {
 		slug:"StringOperators",
 		position:"NumberOperators",
 		description:"StringOperators",
-		parentId:"IDOperators"
+		parentId:"IDOperators",
+		_and:"CollectionFilterParameter",
+		_or:"CollectionFilterParameter"
 	},
 	CollectionSortParameter:{
 		id:"SortOrder",
@@ -409,7 +421,9 @@ export const AllTypesProps: Record<string,any> = {
 		updatedAt:"DateOperators",
 		languageCode:"StringOperators",
 		name:"StringOperators",
-		code:"StringOperators"
+		code:"StringOperators",
+		_and:"FacetFilterParameter",
+		_or:"FacetFilterParameter"
 	},
 	FacetSortParameter:{
 		id:"SortOrder",
@@ -425,7 +439,10 @@ export const AllTypesProps: Record<string,any> = {
 		languageCode:"StringOperators",
 		name:"StringOperators",
 		slug:"StringOperators",
-		description:"StringOperators"
+		description:"StringOperators",
+		enabled:"BooleanOperators",
+		_and:"ProductFilterParameter",
+		_or:"ProductFilterParameter"
 	},
 	ProductSortParameter:{
 		id:"SortOrder",
@@ -435,12 +452,21 @@ export const AllTypesProps: Record<string,any> = {
 		slug:"SortOrder",
 		description:"SortOrder"
 	},
+	OrderLineEssentialOilsStructInput:{
+
+	},
+	OrderLineCustomFieldsInput:{
+		essentialOils:"OrderLineEssentialOilsStructInput"
+	},
 	NativeAuthInput:{
 
 	}
 }
 
 export const ReturnTypes: Record<string,any> = {
+	oneOf:{
+
+	},
 	Query:{
 		activeChannel:"Channel",
 		activeCustomer:"Customer",
@@ -458,7 +484,8 @@ export const ReturnTypes: Record<string,any> = {
 		orderByCode:"Order",
 		product:"Product",
 		products:"ProductList",
-		search:"SearchResponse"
+		search:"SearchResponse",
+		essentialOils:"EssentialOilList"
 	},
 	Mutation:{
 		addItemToOrder:"UpdateOrderItemsResult",
@@ -470,6 +497,8 @@ export const ReturnTypes: Record<string,any> = {
 		transitionOrderToState:"TransitionOrderToStateResult",
 		setOrderShippingAddress:"ActiveOrderResult",
 		setOrderBillingAddress:"ActiveOrderResult",
+		unsetOrderShippingAddress:"ActiveOrderResult",
+		unsetOrderBillingAddress:"ActiveOrderResult",
 		setOrderCustomFields:"ActiveOrderResult",
 		setOrderShippingMethod:"SetOrderShippingMethodResult",
 		addPaymentToOrder:"AddPaymentToOrderResult",
@@ -667,6 +696,11 @@ export const ReturnTypes: Record<string,any> = {
 		errorCode:"ErrorCode",
 		message:"String"
 	},
+	OrderInterceptorError:{
+		errorCode:"ErrorCode",
+		message:"String",
+		interceptorError:"String"
+	},
 	JSON: `scalar.JSON` as const,
 	DateTime: `scalar.DateTime` as const,
 	Upload: `scalar.Upload` as const,
@@ -725,6 +759,7 @@ export const ReturnTypes: Record<string,any> = {
 		"...on User": "User",
 		"...on AuthenticationMethod": "AuthenticationMethod",
 		"...on Zone": "Zone",
+		"...on EssentialOil": "EssentialOil",
 		id:"ID"
 	},
 	ErrorResult:{
@@ -742,6 +777,7 @@ export const ReturnTypes: Record<string,any> = {
 		"...on OrderModificationError": "OrderModificationError",
 		"...on IneligibleShippingMethodError": "IneligibleShippingMethodError",
 		"...on NoActiveOrderError": "NoActiveOrderError",
+		"...on OrderInterceptorError": "OrderInterceptorError",
 		"...on OrderPaymentStateError": "OrderPaymentStateError",
 		"...on IneligiblePaymentMethodError": "IneligiblePaymentMethodError",
 		"...on PaymentFailedError": "PaymentFailedError",
@@ -825,11 +861,13 @@ export const ReturnTypes: Record<string,any> = {
 		"...on OrderModificationError":"OrderModificationError",
 		"...on OrderLimitError":"OrderLimitError",
 		"...on NegativeQuantityError":"NegativeQuantityError",
-		"...on InsufficientStockError":"InsufficientStockError"
+		"...on InsufficientStockError":"InsufficientStockError",
+		"...on OrderInterceptorError":"OrderInterceptorError"
 	},
 	RemoveOrderItemsResult:{
 		"...on Order":"Order",
-		"...on OrderModificationError":"OrderModificationError"
+		"...on OrderModificationError":"OrderModificationError",
+		"...on OrderInterceptorError":"OrderInterceptorError"
 	},
 	SetOrderShippingMethodResult:{
 		"...on Order":"Order",
@@ -853,6 +891,7 @@ export const ReturnTypes: Record<string,any> = {
 		"...on RelationCustomFieldConfig": "RelationCustomFieldConfig",
 		"...on TextCustomFieldConfig": "TextCustomFieldConfig",
 		"...on LocaleTextCustomFieldConfig": "LocaleTextCustomFieldConfig",
+		"...on StructCustomFieldConfig": "StructCustomFieldConfig",
 		name:"String",
 		type:"String",
 		list:"Boolean",
@@ -861,6 +900,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		ui:"JSON"
 	},
 	StringCustomFieldConfig:{
@@ -873,6 +913,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		pattern:"String",
 		options:"StringFieldOption",
 		ui:"JSON"
@@ -891,6 +932,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		pattern:"String",
 		ui:"JSON"
 	},
@@ -903,6 +945,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		min:"Int",
 		max:"Int",
 		step:"Int",
@@ -917,6 +960,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		min:"Float",
 		max:"Float",
 		step:"Float",
@@ -931,6 +975,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		ui:"JSON"
 	},
 	DateTimeCustomFieldConfig:{
@@ -942,6 +987,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		min:"String",
 		max:"String",
 		step:"Int",
@@ -956,6 +1002,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		entity:"String",
 		scalarFields:"String",
 		ui:"JSON"
@@ -969,6 +1016,7 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
 		ui:"JSON"
 	},
 	LocaleTextCustomFieldConfig:{
@@ -980,6 +1028,102 @@ export const ReturnTypes: Record<string,any> = {
 		readonly:"Boolean",
 		internal:"Boolean",
 		nullable:"Boolean",
+		requiresPermission:"Permission",
+		ui:"JSON"
+	},
+	StructField:{
+		"...on StringStructFieldConfig": "StringStructFieldConfig",
+		"...on IntStructFieldConfig": "IntStructFieldConfig",
+		"...on FloatStructFieldConfig": "FloatStructFieldConfig",
+		"...on BooleanStructFieldConfig": "BooleanStructFieldConfig",
+		"...on DateTimeStructFieldConfig": "DateTimeStructFieldConfig",
+		"...on TextStructFieldConfig": "TextStructFieldConfig",
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		ui:"JSON"
+	},
+	StringStructFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		length:"Int",
+		pattern:"String",
+		options:"StringFieldOption",
+		ui:"JSON"
+	},
+	IntStructFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		min:"Int",
+		max:"Int",
+		step:"Int",
+		ui:"JSON"
+	},
+	FloatStructFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		min:"Float",
+		max:"Float",
+		step:"Float",
+		ui:"JSON"
+	},
+	BooleanStructFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		ui:"JSON"
+	},
+	DateTimeStructFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		min:"String",
+		max:"String",
+		step:"Int",
+		ui:"JSON"
+	},
+	TextStructFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		ui:"JSON"
+	},
+	StructFieldConfig:{
+		"...on StringStructFieldConfig":"StringStructFieldConfig",
+		"...on IntStructFieldConfig":"IntStructFieldConfig",
+		"...on FloatStructFieldConfig":"FloatStructFieldConfig",
+		"...on BooleanStructFieldConfig":"BooleanStructFieldConfig",
+		"...on DateTimeStructFieldConfig":"DateTimeStructFieldConfig",
+		"...on TextStructFieldConfig":"TextStructFieldConfig"
+	},
+	StructCustomFieldConfig:{
+		name:"String",
+		type:"String",
+		list:"Boolean",
+		fields:"StructFieldConfig",
+		label:"LocalizedString",
+		description:"LocalizedString",
+		readonly:"Boolean",
+		internal:"Boolean",
+		nullable:"Boolean",
+		requiresPermission:"Permission",
 		ui:"JSON"
 	},
 	LocalizedString:{
@@ -995,7 +1139,8 @@ export const ReturnTypes: Record<string,any> = {
 		"...on DateTimeCustomFieldConfig":"DateTimeCustomFieldConfig",
 		"...on RelationCustomFieldConfig":"RelationCustomFieldConfig",
 		"...on TextCustomFieldConfig":"TextCustomFieldConfig",
-		"...on LocaleTextCustomFieldConfig":"LocaleTextCustomFieldConfig"
+		"...on LocaleTextCustomFieldConfig":"LocaleTextCustomFieldConfig",
+		"...on StructCustomFieldConfig":"StructCustomFieldConfig"
 	},
 	CustomerGroup:{
 		id:"ID",
@@ -1074,7 +1219,8 @@ export const ReturnTypes: Record<string,any> = {
 		createdAt:"DateTime",
 		updatedAt:"DateTime",
 		type:"HistoryEntryType",
-		data:"JSON"
+		data:"JSON",
+		customFields:"JSON"
 	},
 	HistoryEntryList:{
 		items:"HistoryEntry",
@@ -1142,7 +1288,8 @@ export const ReturnTypes: Record<string,any> = {
 		priceWithTax:"Money",
 		discountedPrice:"Money",
 		discountedPriceWithTax:"Money",
-		discounts:"Discount"
+		discounts:"Discount",
+		customFields:"JSON"
 	},
 	Discount:{
 		adjustmentSource:"String",
@@ -1179,7 +1326,7 @@ export const ReturnTypes: Record<string,any> = {
 		taxLines:"TaxLine",
 		order:"Order",
 		fulfillmentLines:"FulfillmentLine",
-		customFields:"JSON"
+		customFields:"OrderLineCustomFields"
 	},
 	Payment:{
 		id:"ID",
@@ -1191,7 +1338,8 @@ export const ReturnTypes: Record<string,any> = {
 		transactionId:"String",
 		errorMessage:"String",
 		refunds:"Refund",
-		metadata:"JSON"
+		metadata:"JSON",
+		customFields:"JSON"
 	},
 	RefundLine:{
 		orderLine:"OrderLine",
@@ -1214,7 +1362,8 @@ export const ReturnTypes: Record<string,any> = {
 		reason:"String",
 		lines:"RefundLine",
 		paymentId:"ID",
-		metadata:"JSON"
+		metadata:"JSON",
+		customFields:"JSON"
 	},
 	FulfillmentLine:{
 		orderLine:"OrderLine",
@@ -1363,6 +1512,7 @@ export const ReturnTypes: Record<string,any> = {
 		name:"String",
 		slug:"String",
 		description:"String",
+		enabled:"Boolean",
 		featuredAsset:"Asset",
 		assets:"Asset",
 		variants:"ProductVariant",
@@ -1758,6 +1908,27 @@ export const ReturnTypes: Record<string,any> = {
 	ActiveOrderResult:{
 		"...on Order":"Order",
 		"...on NoActiveOrderError":"NoActiveOrderError"
+	},
+	EssentialOil:{
+		id:"ID",
+		name:"String",
+		price:"EssentialOilPrice"
+	},
+	EssentialOilPrice:{
+		channelId:"ID",
+		price:"Float",
+		currencyCode:"String"
+	},
+	EssentialOilList:{
+		items:"EssentialOil",
+		totalItems:"Int"
+	},
+	OrderLineEssentialOilsStruct:{
+		essentialOilId:"String",
+		amount:"Int"
+	},
+	OrderLineCustomFields:{
+		essentialOils:"OrderLineEssentialOilsStruct"
 	}
 }
 

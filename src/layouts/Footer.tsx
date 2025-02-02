@@ -11,7 +11,7 @@ export const Footer: React.FC<{
 }> = ({ navigation }) => {
     const { t } = useTranslation('common');
 
-    const footerLaw = t('footer.law', { returnObjects: true });
+    const footerLaw = t('footer.law', { returnObjects: true, defaultValue: null });
 
     return (
         <Wrapper>

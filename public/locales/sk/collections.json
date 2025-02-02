@@ -1,0 +1,13 @@
+{
+    "search-results": "Výsledky vyhľadávania",
+    "filters": "Filtre",
+    "sort-by": "Triedenie",
+    "sort-keys": {
+      "title": "Názov",
+      "price": "Cena"
+    },
+    "sort-directions": {
+      "ASC": "Nízka až vysoká",
+      "DESC": "Z vysokej na nízku"
+    }
+  }

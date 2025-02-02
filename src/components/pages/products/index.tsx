@@ -20,12 +20,14 @@ import { ProductDescription } from '@/src/components/molecules/ProductDescriptio
 import { storefrontApiQuery } from '@/src/graphql/client';
 import { useChannels } from '@/src/state/channels';
 import { ProductVariantTileType, productVariantTileSelector } from '@/src/graphql/selectors';
+import { ProductEssentialOils } from '../../organisms/ProductEssentialOils';
 
 export const ProductPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = props => {
+
     const { t } = useTranslation('products');
     const { t: breadcrumb } = useTranslation('common');
     const ctx = useChannels();
-    const { product, variant, addingError, productOptionsGroups, handleOptionClick, handleBuyNow, handleAddToCart } =
+    const { product, variant, addingError, productOptionsGroups, handleOptionClick, handleEssentialOilClick, handleBuyNow, handleAddToCart } =
         useProduct();
 
     const breadcrumbs = [
@@ -106,6 +108,15 @@ export const ProductPage: React.FC<InferGetStaticPropsType<typeof getStaticProps
                                     <ProductOptions
                                         productOptionsGroups={productOptionsGroups}
                                         handleClick={handleOptionClick}
+                                        addingError={addingError}
+                                    />
+                                ) : null}
+                            </Stack>
+                            <Stack w100>
+                                {props.essentialOils.totalItems > 1 ? (
+                                    <ProductEssentialOils
+                                        essentialOils={props.essentialOils.items}
+                                        handleClick={handleEssentialOilClick}
                                         addingError={addingError}
                                     />
                                 ) : null}
